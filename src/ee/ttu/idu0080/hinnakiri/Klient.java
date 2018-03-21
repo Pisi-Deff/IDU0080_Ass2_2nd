@@ -61,7 +61,7 @@ public final class Klient {
 	public static void makeRequest(URL wsdlURL, String sPrice) {
 		System.out.println("###################");
 		System.out.println("#making request with price " + sPrice);
-		System.out.println("###################");
+		System.out.println("-------------------");
 		
 		GetHinnakiriResponse response = null;
 		try {
