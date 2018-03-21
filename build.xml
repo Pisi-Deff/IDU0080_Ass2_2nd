@@ -1,0 +1,37 @@
+<project name="IDU0080 yl4 kodune klient" basedir="." default="run">
+	
+	<property name="wsdl.location" value="http://localhost:8080/Yl4_Kodune_Server/services/HinnakiriPort?wsdl" />
+	<property name="src.dir" value="src" />
+	<property name="classes.dir" value="build/classes" />
+	<property name="lib.dir" value="C:/java/apache-cxf-2.2.6/lib" />
+	<path id="main.classpath">
+		<!--<fileset dir="${lib.dir}" includes="**/*.jar" />-->
+		<dirset dir="${classes.dir}" />
+	</path>
+
+	<target name="init">
+		<mkdir dir="${classes.dir}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${classes.dir}" />
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="main.classpath"
+			debug="on" />
+		<copy todir="${classes.dir}">
+			<fileset dir="src" includes="**/*.properties" />
+		</copy>
+	</target>
+
+	<target name="run" depends="compile">
+		<java classname="ee.ttu.idu0080.hinnakiri.Klient" fork="true">
+			<classpath refid="main.classpath" />
+			<arg line="${wsdl.location}" />
+			<jvmarg
+				value="-Djava.util.logging.config.file=${src.dir}/logging.properties" />
+		</java>
+	</target>
+
+</project>
