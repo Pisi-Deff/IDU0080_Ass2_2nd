@@ -10,6 +10,7 @@ import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
 import javax.xml.ws.WebServiceException;
+import javax.xml.ws.soap.SOAPFaultException;
 
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNegativePriceException;
 import ee.ttu.idu0080.hinnakiri.exceptions.HinnakiriNumberFormatException;
@@ -81,6 +82,8 @@ public final class Klient {
 			System.out.println("hind liiga täpne");
 		} catch (HinnakiriNegativePriceException e) {
 			System.out.println("hind negatiivne");
+		} catch (SOAPFaultException e) {
+			System.out.println("soap fault: " + e.getMessage());
 		} catch (WebServiceException e) {
 			throw e;
 		} catch (Throwable t) {
